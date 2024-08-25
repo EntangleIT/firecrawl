@@ -1,0 +1,54 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "esm",
+			"path": "../apps/js-sdk/firecrawl/build/esm"
+		},
+		{
+			"name": "cjs",
+			"path": "../apps/js-sdk/firecrawl/build/cjs"
+		},
+		{
+			"name": "firecrawl",
+			"path": "../apps/js-sdk/firecrawl"
+		},
+		{
+			"name": "js-sdk",
+			"path": "../apps/js-sdk"
+		},
+		{
+			"name": "test-suite",
+			"path": "../apps/test-suite"
+		},
+		{
+			"name": "ingestion-ui",
+			"path": "../apps/ui/ingestion-ui"
+		},
+		{
+			"name": "api",
+			"path": "../apps/api"
+		},
+		{
+			"name": "playwright-service-ts",
+			"path": "../apps/playwright-service-ts"
+		},
+		{
+			"name": "scrape_and_analyze_airbnb_data_e2b",
+			"path": "../examples/scrape_and_analyze_airbnb_data_e2b"
+		}
+	],
+	"settings": {
+		"jest.disabledWorkspaceFolders": [
+			"firecrawl",
+			"esm",
+			"cjs",
+			"js-sdk",
+			"ingestion-ui",
+			"playwright-service-ts",
+			"scrape_and_analyze_airbnb_data_e2b"
+		]
+	}
+}

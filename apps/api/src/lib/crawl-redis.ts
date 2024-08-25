@@ -13,7 +13,7 @@ export type StoredCrawl = {
 
 export async function saveCrawl(id: string, crawl: StoredCrawl) {
     await redisConnection.set("crawl:" + id, JSON.stringify(crawl));
-    await redisConnection.expire("crawl:" + id, 24 * 60 * 60, "NX");
+    await redisConnection.expire("crawl:" + id, 24 * 60 * 60);
 }
 
 export async function getCrawl(id: string): Promise<StoredCrawl | null> {
@@ -28,17 +28,17 @@ export async function getCrawl(id: string): Promise<StoredCrawl | null> {
 
 export async function addCrawlJob(id: string, job_id: string) {
     await redisConnection.sadd("crawl:" + id + ":jobs", job_id);
-    await redisConnection.expire("crawl:" + id + ":jobs", 24 * 60 * 60, "NX");
+    await redisConnection.expire("crawl:" + id + ":jobs", 24 * 60 * 60);
 }
 
 export async function addCrawlJobs(id: string, job_ids: string[]) {
     await redisConnection.sadd("crawl:" + id + ":jobs", ...job_ids);
-    await redisConnection.expire("crawl:" + id + ":jobs", 24 * 60 * 60, "NX");
+    await redisConnection.expire("crawl:" + id + ":jobs", 24 * 60 * 60);
 }
 
 export async function addCrawlJobDone(id: string, job_id: string) {
     await redisConnection.sadd("crawl:" + id + ":jobs_done", job_id);
-    await redisConnection.expire("crawl:" + id + ":jobs_done", 24 * 60 * 60, "NX");
+    await redisConnection.expire("crawl:" + id + ":jobs_done", 24 * 60 * 60);
 }
 
 export async function isCrawlFinished(id: string) {
@@ -66,14 +66,14 @@ export async function lockURL(id: string, sc: StoredCrawl, url: string): Promise
         }
     }
     const res = (await redisConnection.sadd("crawl:" + id + ":visited", url)) !== 0
-    await redisConnection.expire("crawl:" + id + ":visited", 24 * 60 * 60, "NX");
+    await redisConnection.expire("crawl:" + id + ":visited", 24 * 60 * 60);
     return res;
 }
 
 /// NOTE: does not check limit. only use if limit is checked beforehand e.g. with sitemap
 export async function lockURLs(id: string, urls: string[]): Promise<boolean> {
     const res = (await redisConnection.sadd("crawl:" + id + ":visited", ...urls)) !== 0
-    await redisConnection.expire("crawl:" + id + ":visited", 24 * 60 * 60, "NX");
+    await redisConnection.expire("crawl:" + id + ":visited", 24 * 60 * 60);
     return res;
 }
 

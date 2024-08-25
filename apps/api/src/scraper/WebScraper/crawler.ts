@@ -334,6 +334,19 @@ export class WebCrawler {
 
       $("a").each((_, element) => {
         const href = $(element).attr("href");
+        Logger.info('<a> element href: ' + href)
+        if (href) {
+          const u = this.filterURL(href, url);
+          if (u !== null) {
+            links.push({ url: u, html: content, pageStatusCode, pageError });
+          }
+        }
+      });
+
+      // relative <link> elements
+      $("link").each((_, element) => {
+        const href = $(element).attr("href");
+        Logger.info('<link> element href: ' + href)
         if (href) {
           const u = this.filterURL(href, url);
           if (u !== null) {
