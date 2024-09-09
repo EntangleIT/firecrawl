@@ -11,6 +11,8 @@ export interface Progress {
 }
 
 export type PageOptions = {
+  includeMarkdown?: boolean;
+  includeExtract?: boolean;
   onlyMainContent?: boolean;
   includeHtml?: boolean;
   includeRawHtml?: boolean;
@@ -24,12 +26,17 @@ export type PageOptions = {
   parsePDF?: boolean;
   removeTags?: string | string[];
   onlyIncludeTags?: string | string[];
+  includeLinks?: boolean;
+  useFastMode?: boolean; // beta
+  disableJsDom?: boolean; // beta
+  atsv?: boolean; // beta
 };
 
 export type ExtractorOptions = {
   mode: "markdown" | "llm-extraction" | "llm-extraction-from-markdown" | "llm-extraction-from-raw-html";
   extractionPrompt?: string;
   extractionSchema?: Record<string, any>;
+  userPrompt?: string;
 }
 
 export type SearchOptions = {
@@ -66,6 +73,7 @@ export type WebScraperOptions = {
   concurrentRequests?: number;
   bullJobId?: string;
   priority?: number;
+  teamId?: string;
 };
 
 export interface DocumentUrl {
@@ -142,4 +150,5 @@ export interface FireEngineOptions{
   blockMedia?: boolean;
   blockAds?: boolean;
   disableJsDom?: boolean;
+  atsv?: boolean; // beta
 }
